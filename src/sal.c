@@ -1,9 +1,13 @@
+/**
+ * @file symbol_resolver.c
+ * @brief Implementation of the SAL.
+ */
+
+#include "symbol_resolver.h"
 #include <dlfcn.h>
 #include <stddef.h>
 #include <stdarg.h>
 #include <stdio.h>
-
-#include "symbol_resolver.h"
 
 #define SQLITE_OPEN_READWRITE 0x00000002
 
@@ -72,7 +76,7 @@ void sal_log_info(const char* fmt, ...) {
     vsnprintf(buf, sizeof(buf), fmt, args);
     va_end(args);
 
-    if (g_ctx.log) g_ctx.log(4, "LOGGER", "%s", buf);
+    if (g_ctx.log) g_ctx.log(4, "ProjectHub", "%s", buf);
     else printf("[INFO] %s\n", buf);
 }
 
@@ -83,7 +87,7 @@ void sal_log_error(const char* fmt, ...) {
     vsnprintf(buf, sizeof(buf), fmt, args);
     va_end(args);
 
-    if (g_ctx.log) g_ctx.log(6, "LOGGER", "%s", buf);
+    if (g_ctx.log) g_ctx.log(6, "ProjectHub", "%s", buf);
     else fprintf(stderr, "[ERROR] %s\n", buf);
 }
 

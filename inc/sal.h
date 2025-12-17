@@ -1,5 +1,13 @@
-#ifndef SAL_H
-#define SAL_H
+/**
+ * @file symbol_resolver.h
+ * @brief System Abstraction Layer (SAL).
+ *
+ * Wraps dynamic loading of Android system libraries and SQLite.
+ * Ensures the binary does not have build-time dependencies on the NDK.
+ */
+
+#ifndef PROJECT_HUB_SAL_H
+#define PROJECT_HUB_SAL_H
 
 #include <stddef.h>
 
@@ -31,4 +39,4 @@ int sal_sqlite_exec(sqlite3* db, const char* sql, char** errmsg);
 int sal_sqlite_close(sqlite3* db);
 void sal_sqlite_free(void* ptr);
 
-#endif // SYMBOL_RESOLVER
+#endif // PROJECT_HUB_SAL_H
