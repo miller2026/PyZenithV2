@@ -15,7 +15,7 @@ typedef enum module_id_s {
     MOD_ID_MAC,
     MOD_ID_LOGGER,
     MOD_ID_SENDER,
-    MOD_ID_DB_CLEANER
+    MOD_ID_DB_CLEANER,
     MODULE_COUNT
 } module_id_e;
 
@@ -51,5 +51,9 @@ typedef struct daemon_context_s {
     int has_mac;
     int db_cleaned;
 } daemon_context_t;
+
+#define DEBUG(...)
+#define INFO(...)
+#define ERROR(...)
 
 #endif // COMMON_H

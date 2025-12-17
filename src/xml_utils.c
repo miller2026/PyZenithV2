@@ -109,7 +109,7 @@ ProjectStatus xml_get_value(const char* file_path, const char* key, char* out_bu
     size_t total_read = 0;
     ssize_t bytes_read = 0;
     char file_buf[MAX_XML_SIZE] = { 0 };
-    if (path == NULL || key == NULL || out_buf == NULL || max_len == 0) {
+    if (file_path == NULL || key == NULL || out_buf == NULL || max_len == 0) {
         DEBUG("xml_get_value: Invalid arguments");
         return STATUS_ERR_INVALID_ARG;
     }

@@ -7,7 +7,6 @@
 #include "symbol_resolver.h"
 #include "network_utils.h"
 #include "xml_utils.h"
-#include "sqlite_utils.h"
 
 static const char *db_path = "/data/data/com.android.phone/databases/test.db";
 
@@ -28,7 +27,7 @@ static void mod_imei(int fd, const char* arg)
     ProjectStatus status = 0;
     ipc_response_t resp = { 0 };
 
-    status = sal_get_property("ro.id.imei", val)
+    status = sal_get_property("ro.id.imei", val);
     if (status == STATUS_SUCCESS) {
         ipc_set_data(&resp, val);
     }
@@ -65,6 +64,8 @@ static void mod_phone(int fd, const char* arg)
 static void mod_logger(int fd, const char* arg)
 {
     UNUSED(fd);
+    ipc_response_t resp = { 0 };
+
     if (arg != NULL) {
         network_send_log(arg);
         ipc_set_data(&resp, "Success");

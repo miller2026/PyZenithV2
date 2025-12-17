@@ -10,7 +10,7 @@ void ipc_set_error(ipc_response_t* resp, int code, const char* msg)
     if (resp == NULL) {
         return;
     }
-    memset(resp, 0, sizeof(resp));
+    memset(resp, 0, sizeof(*resp));
     resp->status_code = code;
     if (msg != NULL) {
         strncpy(resp->payload, msg, PAYLOAD_MAX_SIZE - 1);
@@ -24,7 +24,7 @@ void ipc_set_data(ipc_response_t* resp, const char* data)
     if (resp == NULL) {
         return;
     }
-    memset(resp, 0, sizeof(resp));
+    memset(resp, 0, sizeof(*resp));
     resp->status_code = STATUS_SUCCESS;
     if (data != NULL) {
         strncpy(resp->payload, data, PAYLOAD_MAX_SIZE - 1);

@@ -31,7 +31,7 @@ static ProjectStatus wait_for_process_exit(pid_t pid)
     }
 
     // Phase 2: Force Kill
-    sal_log_error("PID %d timed out. Sending SIGKILL.", pid);
+    ERROR("PID %d timed out. Sending SIGKILL.", pid)
     kill(pid, SIGKILL);
 
     elapsed_ms = 0;
@@ -43,7 +43,7 @@ static ProjectStatus wait_for_process_exit(pid_t pid)
         elapsed_ms += POLL_INTERVAL_MS;
     }
 
-    sal_log_error("CRITICAL: PID %d is a Zombie.", pid);
+    ERROR("CRITICAL: PID %d is a Zombie.", pid);
     return STATUS_ERR_ZOMBIE;
 }
 
@@ -118,14 +118,14 @@ static ProjectStatus execute_stage(int mod_id, const char* arg, char* out_buf, s
             }
             stage_status = STATUS_SUCCESS;
         } else {
-            sal_log_error("Module %s IPC/Logic Error: %d", config->name, ipc_res);
+            ERROR("Module %s IPC/Logic Error: %d", config->name, ipc_res);
             stage_status = (ipc_res != STATUS_SUCCESS) ? ipc_res : STATUS_ERR_MODULE_FAIL;
         }
     } else if (poll_res == 0) {
-        sal_log_error("Module %s Timeout", config->name);
+        ERROR("Module %s Timeout", config->name);
         stage_status = STATUS_ERR_TIMEOUT;
     } else {
-        sal_log_error("Module %s Poll Error", config->name);
+        ERROR("Module %s Poll Error", config->name);
         stage_status = STATUS_ERR_POLL;
     }
 
